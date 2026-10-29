@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D City — Three.js</title>
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; background: #0a0d14; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    canvas { display: block; }
+
+    #hud {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      color: #e8ecf4;
+      background: rgba(10, 13, 20, 0.55);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      pointer-events: none;
+      user-select: none;
+      max-width: 260px;
+    }
+    #hud b { color: #8ab4ff; }
+    #hud .mode { color: #9cffb0; font-weight: 600; }
+
+    #minimap {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(10,13,20,0.6);
+    }
+
+    #blocker {
+      position: fixed;
+      inset: 0;
+      background: rgba(5,7,12,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e8ecf4;
+      text-align: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+    #blocker .panel {
+      max-width: 420px;
+      padding: 28px 32px;
+      border-radius: 14px;
+      background: rgba(20,24,34,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    #blocker h1 { font-size: 20px; margin: 0 0 8px; }
+    #blocker p { font-size: 13px; color: #aab2c5; margin: 6px 0; }
+    #blocker .key { background: #1f2635; border: 1px solid #333c52; border-radius: 4px; padding: 1px 6px; font-size: 12px; }
+
+    #fps {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      color: #7fffb0;
+      font-size: 12px;
+      font-family: monospace;
+      background: rgba(10,13,20,0.55);
+      padding: 4px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="blocker">
+    <div class="panel">
+      <h1>3D City</h1>
+      <p>Click to enter — mouse looks around.</p>
+      <p><span class="key">WASD</span> move &nbsp; <span class="key">Shift</span> sprint &nbsp; <span class="key">Space</span> jump</p>
+      <p><span class="key">F</span> enter / exit nearest car &nbsp; <span class="key">Esc</span> release mouse</p>
+    </div>
+  </div>
+
+  <div id="hud">
+    <div>Mode: <span class="mode" id="modeLabel">Walking</span></div>
+    <div><b>WASD</b> move · <b>Shift</b> sprint · <b>Space</b> jump</div>
+    <div><b>F</b> enter/exit car near you</div>
+    <div id="carHint" style="display:none;"><b>Arrows/WASD</b> drive · <b>Space</b> brake</div>
+  </div>
+
+  <canvas id="minimap" width="160" height="160"></canvas>
+  <div id="fps">-- fps</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
